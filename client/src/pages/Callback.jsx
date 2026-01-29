@@ -28,7 +28,7 @@ const Callback = () => {
       }
 
       try {
-        const backendUrl = 'http://localhost:3000/api/auth/discord'; // Adjust if backend port differs
+        const backendUrl = `${import.meta.env.VITE_BACKEND_URL}/api/auth/discord`;
         const response = await axios.post( backendUrl, { code } );
 
         const { user } = response.data;
