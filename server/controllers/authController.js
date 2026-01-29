@@ -20,7 +20,7 @@ export const discordAuth = async ( req, res ) => {
       client_secret: DISCORD_CLIENT_SECRET,
       grant_type: 'authorization_code',
       code,
-      redirect_uri: REDIRECT_URI,
+      redirect_uri: req.body.redirect_uri || REDIRECT_URI,
     } );
 
     const tokenResponse = await axios.post( 'https://discord.com/api/oauth2/token', params.toString(), {

@@ -29,7 +29,14 @@ const Callback = () => {
 
       try {
         const backendUrl = 'https://authenticate-via-discord-sso-on-rea-five.vercel.app/api/auth/discord'; // Adjust if backend port differs
-        const response = await axios.post( backendUrl, { code } );
+        // Ensure this matches exactly what was used in AuthContext.jsx
+        // We can either grab it from env or construct it, but to be safe effectively:
+        const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URI || 'https://authenticate-via-discord-sso-on-rea.vercel.app/auth/discord/callback';
+
+        const response = await axios.post( backendUrl, {
+          code,
+          redirect_uri: REDIRECT_URI
+        } );
 
         const { user } = response.data;
         setUser( user );
