@@ -28,7 +28,7 @@ const Callback = () => {
       }
 
       try {
-        const backendUrl = 'https://authenticate-via-discord-sso-on-rea-five.vercel.app/auth/discord/callback'; // Adjust if backend port differs
+        const backendUrl = 'http://localhost:3000/api/auth/discord'; // Adjust if backend port differs
         const response = await axios.post( backendUrl, { code } );
 
         const { user } = response.data;
