@@ -1,7 +1,3 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-
-const AuthContext = createContext();
-
 export const AuthProvider = ( { children } ) => {
     const [ user, setUser ] = useState( null );
     const [ loading, setLoading ] = useState( true );
@@ -23,7 +19,7 @@ export const AuthProvider = ( { children } ) => {
         // Redirect to Discord OAuth URL
         // NOTE: You need to replace NEXT_PUBLIC_DISCORD_CLIENT_ID and REDIRECT_URI with actual values or env vars
         const CLIENT_ID = import.meta.env.VITE_DISCORD_CLIENT_ID;
-        const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URI || 'https://authenticate-via-discord-sso-on-rea.vercel.app/auth/discord/callback';
+        const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URI || 'http://localhost:5173/auth/discord/callback';
 
         // Scopes: identify email
         const targetUrl = `https://discord.com/api/oauth2/authorize?client_id=${ CLIENT_ID }&redirect_uri=${ encodeURIComponent( REDIRECT_URI ) }&response_type=code&scope=identify%20email&state=${ state }`;
